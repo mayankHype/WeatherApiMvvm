@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_api/common/utils.dart';
+import 'package:weather_api/service/analytics.dart';
 import 'package:weather_api/view/home_view/home_view_model.dart';
 import 'package:weather_api/widget/error_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,8 +10,21 @@ import 'package:shimmer/shimmer.dart';
 final homeViewFutureProvider = FutureProvider(
         (ref) async => ref.watch(homeViewModelProvider).getWeather());
 
-class NextDayView extends StatelessWidget {
+class NextDayView extends StatefulWidget {
   const NextDayView({Key? key}) : super(key: key);
+
+  @override
+  State<NextDayView> createState() => _NextDayViewState();
+}
+
+class _NextDayViewState extends State<NextDayView> {
+
+@override
+  void initState() {
+    Analytics().parseEvent("TomorrowScreen");
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +34,12 @@ class NextDayView extends StatelessWidget {
       final weather = ref.watch(homeViewFutureProvider);
       return Scaffold(
           body: weather.when(
-            data: (data)=>ListView.builder(
+            data: (data){
+
+
+
+              return ListView.builder(
+             
               itemCount: data.list!.length,
               itemBuilder: (context,index){
                 final weather=data.list;
@@ -65,40 +84,9 @@ class NextDayView extends StatelessWidget {
                   return Container(height: 0,);
                 }
               },
-            ),
-              // data: (data) =>
-              // Column(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     const SizedBox(height: 20),
-              //
-              //     Text(
-              //         "${(data.list![0].main!.temp!/10).toStringAsFixed(2)} C"),
-              //     Text(
-              //       DateFormat.yMMMd()
-              //           .format(data.list![0].dtTxt!),
-              //       style: const TextStyle(
-              //           fontWeight: FontWeight.w800,
-              //           fontSize: 18),
-              //     ),
-              //
-              //     Row(
-              //       textBaseline: TextBaseline.alphabetic,
-              //       crossAxisAlignment: CrossAxisAlignment.baseline,
-              //       mainAxisAlignment: MainAxisAlignment.center,
-              //       children: [
-              //         Text(
-              //           data.city!.name!,
-              //           style: const TextStyle(
-              //               fontWeight: FontWeight.w800, fontSize: 30),
-              //         ),
-              //         const SizedBox(width: 4),
-              //         Text(data.city!.country!),
-              //       ],
-              //     ),
-              //
-              //   ],
-              // ),
+            );
+            },
+            
               error: (error, trace) => WeatherErrorWidget(
                   onTap: () => ref.refresh(homeViewFutureProvider)),
               loading: () =>  Center(
