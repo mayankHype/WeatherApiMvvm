@@ -16,6 +16,8 @@ Routes._();
 
 static const initalRoute='/';
 static const navRoute='/navigation';
-
+static const searchRoute='/search';
+static const homePage="/home";
+static const nextDayPage="/nextDay";
 
 }
