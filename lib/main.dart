@@ -20,13 +20,9 @@ WidgetsFlutterBinding.ensureInitialized();
 
 
 // Check whether a patch is available to install.
-final isUpdateAvailable = await shorebirdCodePush.isNewPatchAvailableForDownload();
 
-// Download a new patch.
-await shorebirdCodePush.downloadUpdateIfAvailable();
-    await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+
   runApp(const MyApp());
 }
 
