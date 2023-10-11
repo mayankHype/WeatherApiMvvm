@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:shorebird_code_push/shorebird_code_push.dart';
 import 'package:weather_api/common/utils.dart';
 import 'package:weather_api/service/analytics.dart';
 import 'package:weather_api/view/home_view/home_view_model.dart';
@@ -43,6 +44,13 @@ class _HomeViewState extends State<HomeView> {
               data: (data) => Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+
+                  TextButton(onPressed: ()async{
+                    final shorebirdCodePush = ShorebirdCodePush();
+                    // Download a new patch.
+                    await shorebirdCodePush.downloadUpdateIfAvailable();
+                  
+                  }, child: Text("Press to update")),
                   const SizedBox(height: 20),
                     Text(
                                     "${(data.list![0].main!.temp!/10).toStringAsFixed(2)} C"),
