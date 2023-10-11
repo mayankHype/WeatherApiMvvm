@@ -61,6 +61,7 @@ class _HomeViewState extends State<HomeView> {
                       Text(
                         data.city!.name!,
                         style: const TextStyle(
+                          color: Colors.red,
                             fontWeight: FontWeight.w800, fontSize: 30),
                       ),
                       const SizedBox(width: 4),
