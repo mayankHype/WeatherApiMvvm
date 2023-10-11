@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
                     // Download a new patch.
                     await shorebirdCodePush.downloadUpdateIfAvailable();
                   
-                  }, child: Text("Press to updates")),
+                  }, child: Text("Press to update")),
                   const SizedBox(height: 20),
                     Text(
                                     "${(data.list![0].main!.temp!/10).toStringAsFixed(2)} C"),
