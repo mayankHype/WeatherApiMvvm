@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "919617897779",
+    "project_id": "weatherapidemo-b58fc",
+    "storage_bucket": "weatherapidemo-b58fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919617897779:android:77267f0230e525b34eaa46",
+        "android_client_info": {
+          "package_name": "com.weather.api"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3gZrF2W7jP4F3yWnw2Ma2AMYvteDHbs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

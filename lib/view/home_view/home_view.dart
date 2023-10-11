@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:weather_api/common/utils.dart';
+import 'package:weather_api/service/analytics.dart';
 import 'package:weather_api/view/home_view/home_view_model.dart';
 import 'package:weather_api/widget/error_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,8 +12,24 @@ import 'package:shimmer/shimmer.dart';
 final homeViewFutureProvider = FutureProvider(
     (ref) async => ref.watch(homeViewModelProvider).getWeather());
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+
+
+
+@override
+  void initState() {
+      Analytics().parseEvent("TodayScreens");
+      log("SDf");
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +62,7 @@ class HomeView extends StatelessWidget {
                       Text(
                         data.city!.name!,
                         style: const TextStyle(
+                          color: Colors.red,
                             fontWeight: FontWeight.w800, fontSize: 30),
                       ),
                       const SizedBox(width: 4),
@@ -52,8 +72,11 @@ class HomeView extends StatelessWidget {
 
                 ],
               ),
-              error: (error, trace) => WeatherErrorWidget(
-                  onTap: () => ref.refresh(homeViewFutureProvider)),
+              error: (error, trace) {
+log(error.toString());
+                return WeatherErrorWidget(
+                  onTap: () => ref.refresh(homeViewFutureProvider));
+              },
               loading: () =>  Center(
                     child: SizedBox(
   width: 200.0,

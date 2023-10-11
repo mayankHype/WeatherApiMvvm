@@ -31,14 +31,12 @@ class WeatherServiceImpl extends WeatherService {
     file.writeAsStringSync(response.body, flush: true, mode: FileMode.write);
     return WeatherResponseModel.fromJson(data);
   }
-  @override
+
   Future<CustomCityModel> getWeatherByCity(String city) async{
     final response=await _client.get(Uri.parse("$baseUrl${version}weather?q=$city&appid=$apikey"));
-    log("$baseUrl${version}weather?q=$city&appid=$apikey");
-    log(city);
-    log(response.statusCode.toString());
-    log(response.body.toString());
+
     final data=jsonDecode(response.body);
+    
     return CustomCityModel.fromJson(data);
   }
 
