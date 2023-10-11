@@ -26,6 +26,7 @@ class _HomeViewState extends State<HomeView> {
 @override
   void initState() {
       Analytics().parseEvent("TodayScreens");
+      log("SDf");
     // TODO: implement initState
     super.initState();
   }
